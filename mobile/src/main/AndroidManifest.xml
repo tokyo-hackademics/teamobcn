@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.LessonListActivity"
+            android:name=".Activity.TopActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +18,9 @@
 
         <!--<activity android:name=".Activity.TopActivity" />-->
         <activity android:name=".Activity.LessonDetailsActivity"/>
-        <!--<activity android:name=".Activity.LessonListActivity"/>-->
+        <activity android:name=".Activity.LessonListActivity"/>
         <activity android:name=".Activity.LessonSleepActivity"/>
         <activity android:name=".Activity.SettingsActivity"/>
-
 
     </application>
 

@@ -3,7 +3,11 @@ package jp.obcn.memoleep.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -35,6 +39,30 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
         mGridView.setAdapter(mAdapter);
         mGridView.setSelector(android.R.color.transparent);
         mGridView.setOnItemClickListener(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.Toolbar);
+        toolbar.setTitle("Select Lessons");
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // いつものUPナビゲーションの処理
+        switch (id) {
+            case R.id.action_settings:
+                Intent intent = new Intent(getApplication(), SettingsActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -81,8 +109,6 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
                     vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
                     break;
             }
-
-
 
             return view;
         }

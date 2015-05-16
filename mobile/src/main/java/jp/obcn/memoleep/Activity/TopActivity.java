@@ -18,15 +18,13 @@ public class TopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top);
         Handler hdl = new Handler();
-        hdl.postDelayed(new splashHandler(), 2000);
+        hdl.postDelayed(new splashHandler(), 1000);
     }
 
     class splashHandler implements Runnable {
         public void run() {
-            // スプラッシュ完了後に実行するActivityを指定します。
-            Intent intent = new Intent(getApplication(), SettingsActivity.class);
+            Intent intent = new Intent(getApplication(), LessonListActivity.class);
             startActivity(intent);
-            // SplashActivityを終了させます。
             TopActivity.this.finish();
         }
     }
