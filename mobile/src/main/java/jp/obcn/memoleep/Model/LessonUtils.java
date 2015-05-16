@@ -23,7 +23,7 @@ public class LessonUtils {
                 word.example = "Hello Everywhere";
                 words.add(word);
             }
-            data.title = "Lesson " + i+1;
+            data.title = "Lesson " + (i+1);
             if(i < 2) {
                 data.type = LessonData.TYPE.COMPLETE;
             } else if(i < 3) {

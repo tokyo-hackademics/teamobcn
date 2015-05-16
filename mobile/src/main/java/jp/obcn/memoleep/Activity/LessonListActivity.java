@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -20,7 +19,6 @@ import jp.obcn.memoleep.R;
  * Created by iwsbrfts on 2015/05/16.
  */
 public class LessonListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
-
 
     private GridView mGridView;
     private LessonAdapter mAdapter;
@@ -35,6 +33,7 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
         mAdapter.addAll(LessonUtils.createLessonData());
 
         mGridView.setAdapter(mAdapter);
+        mGridView.setSelector(android.R.color.transparent);
         mGridView.setOnItemClickListener(this);
     }
 
@@ -62,7 +61,7 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
                 view = getLayoutInflater().inflate(R.layout.grid_item , null);
                 vh = new ViewHolder();
                 vh.title = (TextView) view.findViewById(R.id.TextItem);
-                vh.body = view.findViewById(R.id.Body);
+                vh.frame = view.findViewById(R.id.Body);
                 view.setTag(vh);
             } else {
                 vh = (ViewHolder) view.getTag();
@@ -73,10 +72,13 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
             vh.title.setText(data.title);
             switch (data.type) {
                 case LessonData.TYPE.COMPLETE:
+                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_complete_tap);
                     break;
                 case LessonData.TYPE.INCOMPLETE:
+                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_incomplete_tap);
                     break;
                 case LessonData.TYPE.NEXT:
+                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
                     break;
             }
 
@@ -87,7 +89,8 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
 
         private class ViewHolder {
             public TextView title;
-            public View body;
+            public View frame;
+            public View underline;
 
         }
 
