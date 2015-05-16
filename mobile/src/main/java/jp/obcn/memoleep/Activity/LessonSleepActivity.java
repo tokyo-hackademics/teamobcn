@@ -1,5 +1,6 @@
 package jp.obcn.memoleep.Activity;
 
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -57,6 +58,8 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
 
             }
         });
+
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     @Override

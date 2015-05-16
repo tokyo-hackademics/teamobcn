@@ -1,13 +1,20 @@
 package jp.obcn.memoleep.Activity;
 
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,10 +24,14 @@ import jp.obcn.memoleep.R;
 import jp.obcn.memoleep.fragment.DetailsCompletedFragment;
 import jp.obcn.memoleep.fragment.DetailsFragment;
 
+import static android.os.Build.VERSION_CODES.LOLLIPOP;
+
 /**
  * Created by iwsbrfts on 2015/05/16.
  */
-public class LessonDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class LessonDetailsActivity extends AppCompatActivity implements View.OnClickListener
+        , TextToSpeech.OnInitListener {
+    private static final String TAG = LessonDetailsActivity.class.getSimpleName();
     public static final String KEY_DATA = "key_data";
 
 
@@ -39,6 +50,8 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
 
     private Handler mHandler = new Handler();
 
+    private TextToSpeech mTts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +66,26 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
         mTextProgressTime = (TextView) findViewById(R.id.TextProgressTime);
 
         mData = (LessonData) getIntent().getSerializableExtra(KEY_DATA);
-        nextData();
+
+        mTts = new TextToSpeech(this,this);
+
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTts.shutdown();
     }
 
     private void nextData() {
         if (isFinishing()) {
             return;
+        }
+
+        if(mTts.isSpeaking()) {
+            mTts.stop();
         }
 
 
@@ -135,7 +162,22 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
     }
 
 
+    private void speech(String message) {
+
+        if(Build.VERSION.SDK_INT < LOLLIPOP) {
+            HashMap<String, String> ttsparam = new HashMap<String, String>();
+            ttsparam.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, message);
+
+            mTts.speak(message, TextToSpeech.QUEUE_FLUSH, ttsparam);
+        } else {
+            mTts.speak(message, TextToSpeech.QUEUE_FLUSH, null, message);
+
+        }
+    }
+
     private void addFragment(WordData data) {
+
+        speech(data.word);
 
         Fragment fragment = new DetailsFragment();
         Bundle bundle = new Bundle();
@@ -174,4 +216,24 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
     }
 
 
+    @Override
+    public void onInit(int status) {
+        Log.d(TAG, "status:" + status);
+        if(status == TextToSpeech.SUCCESS) {
+            Locale locale = Locale.US;
+            int available = mTts.isLanguageAvailable(locale);
+            if (available >= TextToSpeech.LANG_AVAILABLE) {
+                mTts.setLanguage(locale);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        nextData();
+                    }
+                });
+            } else {
+                Toast.makeText(this, "Error: isLanguageAvailable:" + available, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
