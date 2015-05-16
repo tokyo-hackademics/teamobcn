@@ -1,10 +1,12 @@
 package jp.obcn.memoleep.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -17,7 +19,7 @@ import jp.obcn.memoleep.R;
 /**
  * Created by iwsbrfts on 2015/05/16.
  */
-public class LessonListActivity extends AppCompatActivity {
+public class LessonListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
 
     private GridView mGridView;
@@ -33,10 +35,17 @@ public class LessonListActivity extends AppCompatActivity {
         mAdapter.addAll(LessonUtils.createLessonData());
 
         mGridView.setAdapter(mAdapter);
-
+        mGridView.setOnItemClickListener(this);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+        LessonData data = mAdapter.getItem(i);
+        Intent intent = new Intent(this,LessonDetailsActivity.class);
+        intent.putExtra(LessonDetailsActivity.KEY_DATA,data);
+        startActivity(intent);
 
+    }
 
 
     private class LessonAdapter extends ArrayAdapter<LessonData> {

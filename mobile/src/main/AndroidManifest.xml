@@ -15,7 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.SettingsActivity" />
+
+        <!--<activity android:name=".Activity.TopActivity" />-->
+        <activity android:name=".Activity.LessonDetailsActivity"/>
+        <activity android:name=".Activity.LessonListActivity"/>
+        <activity android:name=".Activity.LessonSleepActivity"/>
+        <activity android:name=".Activity.SettingsActivity"/>
+
+
     </application>
 
 </manifest>
