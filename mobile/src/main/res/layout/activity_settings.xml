@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#3A3343">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/Toolbar"
@@ -25,6 +26,7 @@
             android:layout_marginLeft="12dp"
             android:layout_weight="1"
             android:gravity="left"
+            android:textColor="#ffffff"
             android:text="Volume" />
 
         <SeekBar
@@ -55,6 +57,7 @@
             android:layout_marginLeft="12dp"
             android:layout_weight="1"
             android:gravity="left"
+            android:textColor="#ffffff"
             android:text="Timer" />
 
         <TextView
@@ -85,6 +88,7 @@
             android:layout_marginLeft="12dp"
             android:layout_weight="1"
             android:gravity="left"
+            android:textColor="#ffffff"
             android:text="Brain wave" />
 
         <Switch
@@ -117,6 +121,7 @@
             android:layout_marginLeft="12dp"
             android:layout_weight="1"
             android:gravity="left"
+            android:textColor="#ffffff"
             android:text="Heart rate" />
 
         <Switch
