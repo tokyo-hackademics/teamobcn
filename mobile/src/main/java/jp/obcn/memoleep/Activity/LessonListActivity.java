@@ -14,6 +14,7 @@ import android.widget.TextView;
 import jp.obcn.memoleep.Model.LessonData;
 import jp.obcn.memoleep.Model.LessonUtils;
 import jp.obcn.memoleep.R;
+import jp.obcn.memoleep.pref.GlobalConfig;
 
 /**
  * Created by iwsbrfts on 2015/05/16.
@@ -46,6 +47,11 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAdapter.notifyDataSetChanged();
+    }
 
     private class LessonAdapter extends ArrayAdapter<LessonData> {
 
@@ -70,17 +76,35 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
             LessonData data = getItem(i);
 
             vh.title.setText(data.title);
-            switch (data.type) {
-                case LessonData.TYPE.COMPLETE:
-                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_complete_tap);
-                    break;
-                case LessonData.TYPE.INCOMPLETE:
-                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_incomplete_tap);
-                    break;
-                case LessonData.TYPE.NEXT:
-                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
-                    break;
+
+            boolean bRet = GlobalConfig.getInstance(getApplicationContext()).readCompletedLesson(data.title);
+
+            if(bRet) {
+                vh.frame.setBackgroundResource(R.drawable.grid_item_frame_complete_tap);
+            } else if(mFirstInComplteted) {
+                vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
+                data.isNext = true;
+                mFirstInComplteted = false;
+            } else if(data.isNext) {
+                vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
+                data.isNext = true;
+                mFirstInComplteted = false;
+            } else {
+                vh.frame.setBackgroundResource(R.drawable.grid_item_frame_incomplete_tap);
             }
+
+
+//            switch (data.type) {
+//                case LessonData.TYPE.COMPLETE:
+//                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_complete_tap);
+//                    break;
+//                case LessonData.TYPE.INCOMPLETE:
+//                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_incomplete_tap);
+//                    break;
+//                case LessonData.TYPE.NEXT:
+//                    vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
+//                    break;
+//            }
 
 
 
@@ -94,6 +118,13 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
 
         }
 
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+            mFirstInComplteted = true;
+        }
+
+        private boolean mFirstInComplteted = true;
     }
 
 

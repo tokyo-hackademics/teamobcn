@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -119,7 +120,8 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
     }
 
     private void speech(String message) {
-        mTextWord.setText(message);
+        CharSequence text = Html.fromHtml(message);
+        mTextWord.setText(text);
 
 
         if(Build.VERSION.SDK_INT < LOLLIPOP) {
@@ -128,7 +130,7 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
 
             mTts.speak(message , TextToSpeech.QUEUE_FLUSH,ttsparam);
         } else {
-            mTts.speak(message , TextToSpeech.QUEUE_FLUSH,null,message);
+            mTts.speak(text , TextToSpeech.QUEUE_FLUSH,null,message);
 
         }
     }

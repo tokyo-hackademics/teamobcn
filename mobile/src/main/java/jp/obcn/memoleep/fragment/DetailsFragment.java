@@ -3,6 +3,7 @@ package jp.obcn.memoleep.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class DetailsFragment extends Fragment {
         Bundle args = getArguments();
         WordData data = (WordData) args.getSerializable(KEY_WORD_DATA);
 
-        View v = inflater.inflate(R.layout.fragment_details_item,null);
+        View v = inflater.inflate(R.layout.fragment_details_item, null);
 
         TextView textExample = (TextView) v.findViewById(R.id.TextExample);
         TextView textMean = (TextView) v.findViewById(R.id.TextMean);
@@ -32,7 +33,7 @@ public class DetailsFragment extends Fragment {
         TextView textPhonenic = (TextView) v.findViewById(R.id.TextPhonenic);
 
 
-        textExample.setText(data.example);
+        textExample.setText(Html.fromHtml(data.example));
         textMean.setText(data.mean);
         textWord.setText(data.word);
         textPhonenic.setText(data.phoneric);

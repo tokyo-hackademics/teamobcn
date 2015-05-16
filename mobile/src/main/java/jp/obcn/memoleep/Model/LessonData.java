@@ -20,4 +20,7 @@ public class LessonData implements Serializable{
     public List<WordData> Words;
 
 
+    public boolean isNext = false;
+
+
 }

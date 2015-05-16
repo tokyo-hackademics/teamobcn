@@ -12,6 +12,7 @@ import android.widget.TextView;
 import jp.obcn.memoleep.Activity.LessonSleepActivity;
 import jp.obcn.memoleep.Model.LessonData;
 import jp.obcn.memoleep.R;
+import jp.obcn.memoleep.pref.GlobalConfig;
 
 /**
  * Created by iwsbrfts on 2015/05/17.
@@ -30,7 +31,7 @@ public class DetailsCompletedFragment extends Fragment {
 
                 LessonData data = (LessonData) getArguments().getSerializable(KEY_DATA);
                 Intent intent = new Intent(getActivity(), LessonSleepActivity.class);
-                intent.putExtra(LessonSleepActivity.KEY_DATA,data);
+                intent.putExtra(LessonSleepActivity.KEY_DATA, data);
                 getActivity().startActivity(intent);
                 getActivity().finish();
             }
@@ -43,7 +44,7 @@ public class DetailsCompletedFragment extends Fragment {
 
         TextView textMessage = (TextView) v.findViewById(R.id.TextMessage);
 
-
+        GlobalConfig.getInstance(getActivity()).writeCompletedLesson(data.title);
 
         return v;
     }
