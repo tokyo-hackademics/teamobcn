@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Widget.AppCompat.ActionBar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <TextView
+            android:id="@+id/TextTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/Progress"
+            android:text="3:00" />
+
+        <ProgressBar
+            android:id="@+id/Progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_weight="1"
+        android:id="@+id/Frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#40000000" />
+
+    <LinearLayout
+        android:layout_marginBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <Button
+            android:id="@+id/BtnDontknow"
+            android:text="@string/details_dont_know"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/BtnKnown"
+            android:text="@string/details_known"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

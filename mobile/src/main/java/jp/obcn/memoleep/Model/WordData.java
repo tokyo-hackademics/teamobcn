@@ -8,5 +8,6 @@ import java.io.Serializable;
 public class WordData implements Serializable {
     public String word;
     public String phoneric;
+    public String mean;
     public String example;
 }
