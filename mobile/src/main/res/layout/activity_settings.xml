@@ -25,7 +25,7 @@
             android:layout_marginLeft="12dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Volume">
+            android:text="Volume" />
 
         <SeekBar
             android:id="@+id/seekBarVolume"
