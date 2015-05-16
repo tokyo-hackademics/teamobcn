@@ -18,7 +18,7 @@ public class LessonUtils {
             List<WordData> words = new ArrayList<>();
             for(int l = 0;l< LessonData.MAX_SIZE;l++) {
                 WordData word = new WordData();
-                word.word = "Hello";
+                word.word = "Hello i=" + i + " l=" + l;
                 word.phoneric = "Hello";
                 word.example = "Hello Everywhere";
                 words.add(word);
