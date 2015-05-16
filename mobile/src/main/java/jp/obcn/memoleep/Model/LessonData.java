@@ -1,11 +1,12 @@
 package jp.obcn.memoleep.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by iwsbrfts on 2015/05/16.
  */
-public class LessonData {
+public class LessonData implements Serializable{
 
     public class TYPE {
         public static final int INCOMPLETE = 0;
