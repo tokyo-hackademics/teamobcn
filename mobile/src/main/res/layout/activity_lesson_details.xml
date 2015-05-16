@@ -13,11 +13,13 @@
         android:theme="@style/Widget.AppCompat.ActionBar" />
 
     <RelativeLayout
+        android:id="@+id/FrameProgress"
         android:layout_width="match_parent"
         android:layout_height="64dp">
 
         <TextView
-            android:id="@+id/TextTime"
+            android:gravity="center"
+            android:id="@+id/TextProgressTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -43,6 +45,7 @@
         android:background="#40000000" />
 
     <LinearLayout
+        android:id="@+id/Footer"
         android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="64dp">
