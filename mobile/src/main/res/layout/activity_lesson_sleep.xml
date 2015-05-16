@@ -17,17 +17,15 @@
         android:layout_height="match_parent" >
 
         <TextView
-            android:id="@+id/lessonText"
+            android:id="@+id/TextWord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="english"
             android:textSize="60sp"
-            android:paddingBottom="32dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerInParent="true" />
 
         <ImageButton
-            android:id="@+id/stopButton"
+            android:id="@+id/BtnStopOrStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

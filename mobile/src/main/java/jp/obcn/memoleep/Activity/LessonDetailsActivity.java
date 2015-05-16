@@ -57,14 +57,16 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
     }
 
     private void nextData() {
+        if (isFinishing()) {
+            return;
+        }
+
 
         if (mData.Words.size() > mCount) {
             addFragment(mData.Words.get(mCount++));
 
-            if (mTimer != null) {
-                mTimer.cancel();
-                mTimer = null;
-            }
+            cancelTimer();
+
             mProgressBar.setProgress(MAX_DURATION);
 
             mTimer = new Timer(true);
@@ -78,10 +80,8 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
 
                     if(mDuration <= 0) {
 
-                        if (mTimer != null) {
-                            mTimer.cancel();
-                            mTimer = null;
-                        }
+                        cancelTimer();
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -95,9 +95,6 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
                                 mHandler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (isFinishing()) {
-                                            return;
-                                        }
 
                                         nextData();
 
@@ -168,6 +165,13 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
     }
 
     private Timer mTimer = null;
+
+    private void cancelTimer() {
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+        }
+    }
 
 
 }
