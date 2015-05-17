@@ -4,13 +4,19 @@
     <color name="main_color_lesson">#ffffff</color>
 
     <color name="main_color_header">#482f73</color>
-    <color name="sub_color_2_sleep">#8b8ce4</color>
-    <color name="sub_color_1_lesson">#e6444f</color>
-    <color name="sub_color_3_common">#f5f11f0</color>
 
+    <color name="sub_color_1_lesson">#e6444f</color>
+    <color name="sub_color_1_lesson_pressed">#e5e6444f</color>
+    <color name="sub_color_2_sleep">#8b8ce4</color>
+    <color name="sub_color_2_sleep_pressed">#e58b8ce4</color>
+    <color name="sub_color_3_common">#f5f1f0</color>
+    <color name="sub_color_3_common_pressed">#e5f5f1f0</color>
 
     <color name="text_color_1_sleep">#ffffff</color>
+    <color name="text_color_1_sleep_pressed">#e5ffffff</color>
     <color name="text_color_2_lesson">#555555</color>
+    <color name="text_color_2_lesson_pressed">#e5555555</color>
     <color name="text_color_3_common">#93bad5</color>
+    <color name="text_color_3_common_pressed">#e593bad5</color>
 
 </resources>
