@@ -7,7 +7,9 @@ import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -70,8 +72,24 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
         mTts = new TextToSpeech(this,this);
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.Toolbar);
+        toolbar.setTitle("Lessons");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case android.R.id.home:
+                LessonDetailsActivity.this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onDestroy() {
