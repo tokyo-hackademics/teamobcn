@@ -18,7 +18,7 @@ public class TopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top);
         Handler hdl = new Handler();
-        hdl.postDelayed(new splashHandler(), 5000);
+        hdl.postDelayed(new splashHandler(), 1000);
     }
 
     class splashHandler implements Runnable {
