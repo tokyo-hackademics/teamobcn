@@ -8,6 +8,8 @@ import android.speech.tts.UtteranceProgressListener;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
     private int mType = 0;
 
     private TextView mTextWord;
+    private ProgressBar mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
         setContentView(R.layout.activity_lesson_sleep);
 
         mTextWord = (TextView) findViewById(R.id.TextWord);
+        mProgress = (ProgressBar) findViewById(R.id.Progress);
 
         mData = (LessonData) getIntent().getSerializableExtra(KEY_DATA);
 
@@ -87,6 +91,7 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        mProgress.setVisibility(View.GONE);
                         nextSpeech();
                     }
                 });
@@ -98,6 +103,16 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
 
 
     private void nextSpeech() {
+
+        if(mData.Words.size() >= mCount) {
+            //TODO 最後の言葉を入れる。文言検討
+            mTts.setOnUtteranceProgressListener(null);
+            mTts.setOnUtteranceCompletedListener(null);
+            speech("Congratulations");
+
+            return;
+        }
+
 
         if(mType == 0 ){
             WordData data = mData.Words.get(mCount);
