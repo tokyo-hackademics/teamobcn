@@ -1,8 +1,11 @@
 package jp.obcn.memoleep.Activity;
 
+import android.bluetooth.BluetoothAdapter;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +17,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.neurosky.thinkgear.TGDevice;
+import com.neurosky.thinkgear.TGEegPower;
+import com.neurosky.thinkgear.TGRawMulti;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -40,6 +47,9 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
 
     private TextView mTextWord;
     private ProgressBar mProgress;
+
+    private TGEegPower mTgEeegPower;
+    private TGDevice mTgDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +82,18 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
         toolbar.setTitle("Memorize");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+        if(mAdapter == null) {
+            return;
+        }
+        mTgDevice = new TGDevice(mAdapter,mHandler);
+        if(mTgDevice.getState() != TGDevice.STATE_CONNECTING
+                && mTgDevice.getState() != TGDevice.STATE_CONNECTED){
+            mTgDevice.connect(true);
+        }
+
     }
 
     @Override
@@ -194,4 +216,86 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
     public void stopButton(View view) {
         LessonSleepActivity.this.finish();
     }
+
+
+    /**
+     * Handles messages from TGDevice
+     */
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case TGDevice.MSG_STATE_CHANGE:
+
+                    switch (msg.arg1) {
+                        case TGDevice.STATE_IDLE:
+                            break;
+                        case TGDevice.STATE_CONNECTING:
+                            Log.d(TAG, "Connecting...");
+                            break;
+                        case TGDevice.STATE_CONNECTED:
+                            Log.d(TAG, "Connected.");
+                            mTgDevice.start();
+                            break;
+                        case TGDevice.STATE_NOT_FOUND:
+                            Log.d(TAG, "Can't find.");
+                            break;
+                        case TGDevice.STATE_NOT_PAIRED:
+                            Log.d(TAG, "not paired.");
+                            break;
+                        case TGDevice.STATE_DISCONNECTED:
+                            Log.d(TAG, "Disconnected mang.");
+                    }
+
+                    break;
+                case TGDevice.MSG_EEG_POWER:
+                    Log.d("TAG","EEG");
+
+                    mTgEeegPower = (TGEegPower)msg.obj;
+                    Log.d(TAG, "Delta:" + mTgEeegPower.delta);
+                    Log.d(TAG, "Theta:" + mTgEeegPower.theta);
+                    Log.d(TAG, "High Alpha:" + mTgEeegPower.highAlpha);
+                    Log.d(TAG, "High Beta:" + mTgEeegPower.highBeta);
+                    Log.d(TAG, "High Gamma:" +  mTgEeegPower.midGamma);
+                    Log.d(TAG, "Low Alpha:" +  mTgEeegPower.lowAlpha);
+                    Log.d(TAG, "Low Beta:" +  mTgEeegPower.lowBeta);
+                    Log.d(TAG, "Low Gamma:" +  mTgEeegPower.lowGamma);
+
+                    break;
+
+                case TGDevice.MSG_POOR_SIGNAL:
+                    Log.d(TAG, "PoorSignal:" + msg.arg1);
+                    break;
+                case TGDevice.MSG_RAW_DATA:
+                    //Log.d(TAG, "Got raw: " + msg.arg1);
+                    break;
+                case TGDevice.MSG_HEART_RATE:
+                    Log.d(TAG, "Heart rate: " + msg.arg1);
+                    break;
+                case TGDevice.MSG_ATTENTION:
+                    Log.d(TAG, "Attention: " + msg.arg1);
+                    break;
+                case TGDevice.MSG_MEDITATION:
+                    Log.d(TAG, "Meditation: " + msg.arg1);
+                    break;
+                case TGDevice.MSG_BLINK:
+                    Log.d(TAG, "Blink: " + msg.arg1 );
+                    break;
+                case TGDevice.MSG_RAW_COUNT:
+                    Log.d(TAG, "Raw Count: " + msg.arg1);
+                    break;
+                case TGDevice.MSG_LOW_BATTERY:
+                    Log.d(TAG, "Low battery");
+                    break;
+                case TGDevice.MSG_RAW_MULTI:
+                    TGRawMulti rawM = (TGRawMulti)msg.obj;
+                    Log.d(TAG, "Raw1: " + rawM.ch1 + " Raw2: " + rawM.ch2);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+
 }
