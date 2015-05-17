@@ -42,6 +42,7 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.Toolbar);
         toolbar.setTitle("Select Lessons");
+        toolbar.setPopupTheme(R.style.PopThemeStyle);
         setSupportActionBar(toolbar);
     }
 

@@ -120,7 +120,6 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
         }
     }
 
-
     private void nextSpeech() {
 
         if(mData.Words.size() <= mCount) {
@@ -151,6 +150,8 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
         CharSequence text = Html.fromHtml(message);
         mTextWord.setText(text);
 
+        float speechRate = 0.3f;
+        mTts.setSpeechRate(speechRate);
 
         if(Build.VERSION.SDK_INT < LOLLIPOP) {
             HashMap<String, String> ttsparam = new HashMap<String, String>();
