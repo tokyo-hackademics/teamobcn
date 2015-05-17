@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_color_sleep">#3a3344</color>
+    <color name="main_color_lesson">#ffffff</color>
+
+    <color name="main_color_header">#482f73</color>
+    <color name="sub_color_2_sleep">#8b8ce4</color>
+    <color name="sub_color_1_lesson">#e6444f</color>
+    <color name="sub_color_3_common">#f5f11f0</color>
+
+
+    <color name="text_color_1_sleep">#ffffff</color>
+    <color name="text_color_2_lesson">#555555</color>
+    <color name="text_color_3_common">#93bad5</color>
+
+</resources>
