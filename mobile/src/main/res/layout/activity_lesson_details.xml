@@ -24,6 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/Progress"
+            android:textColor="@color/text_color_2_lesson"
+            android:textSize="14sp"
             android:gravity="center"
             />
 
