@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -65,6 +67,23 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
         });
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.Toolbar);
+        toolbar.setTitle("Memorize");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case android.R.id.home:
+                LessonSleepActivity.this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -113,13 +132,10 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
             return;
         }
 
-
         if(mType == 0 ){
             WordData data = mData.Words.get(mCount);
 
             speech(data.word);
-
-
 
             mType = 1;
         } else if(mType == 1) {
@@ -128,10 +144,7 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
             speech(data.example);
 
             mType = 0;
-
         }
-
-
     }
 
     private void speech(String message) {
@@ -178,4 +191,7 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
         }
     }
 
+    public void stopButton(View view) {
+        LessonSleepActivity.this.finish();
+    }
 }
