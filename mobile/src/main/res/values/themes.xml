@@ -11,6 +11,18 @@
         <item name="android:textColorSecondary">#ffffff</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowBackground">@null</item>
+
+        <item name="android:navigationBarColor">@color/sub_color_2_sleep</item>
+
+    </style>
+
+    <!-- ポップアップメニューのテーマ -->
+    <style name="PopThemeStyle" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!-- 文字色 -->
+        <item name="android:textColorPrimary">@color/text_color_2_lesson</item>
+
+        <!-- 背景色 -->
+        <item name="android:background">@color/sub_color_2_sleep</item>
     </style>
 
 </resources>

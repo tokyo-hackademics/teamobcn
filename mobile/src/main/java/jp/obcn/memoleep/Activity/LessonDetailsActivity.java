@@ -164,7 +164,8 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
                             @Override
                             public void run() {
                                 mProgressBar.setProgress(mDuration);
-                                mTextProgressTime.setText(String.valueOf(mDuration));
+                                int dispDuration = (mDuration / 1000) + 1;
+                                mTextProgressTime.setText(String.valueOf(dispDuration));
                             }
                         });
 

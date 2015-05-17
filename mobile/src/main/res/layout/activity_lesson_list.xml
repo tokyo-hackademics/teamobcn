@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
+        android:popupTheme="@style/PopThemeStyle"
         android:theme="@style/NoActionBarTheme" />
 
     <GridView

@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/Progress"
             android:gravity="center"
-            android:text="3:00" />
+            />
 
         <ProgressBar
             android:id="@+id/Progress"
