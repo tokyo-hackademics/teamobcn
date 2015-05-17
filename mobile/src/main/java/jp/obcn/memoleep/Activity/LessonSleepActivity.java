@@ -115,9 +115,20 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        mTts.stop();
+
+        mTgDevice.stop();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mTts.shutdown();
+
+        mTgDevice.close();
+
     }
 
     @Override
@@ -133,7 +144,6 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
                     @Override
                     public void run() {
                         mProgress.setVisibility(View.GONE);
-                        nextSpeech();
                     }
                 });
             } else {
@@ -281,6 +291,9 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
                     break;
                 case TGDevice.MSG_BLINK:
                     Log.d(TAG, "Blink: " + msg.arg1 );
+                    mHandler.removeCallbacks(mRun);
+                    mHandler.postDelayed(mRun,5000);
+
                     break;
                 case TGDevice.MSG_RAW_COUNT:
                     Log.d(TAG, "Raw Count: " + msg.arg1);
@@ -295,6 +308,13 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
                 default:
                     break;
             }
+        }
+    };
+
+    private Runnable mRun = new Runnable() {
+        @Override
+        public void run() {
+            nextSpeech();
         }
     };
 

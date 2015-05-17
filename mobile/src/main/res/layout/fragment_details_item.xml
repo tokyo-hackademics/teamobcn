@@ -2,10 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/waku"
     android:padding="2dp">
 
     <LinearLayout
+        android:background="@drawable/waku"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -23,6 +23,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
+                android:textSize="20sp"
+                android:textColor="@color/text_color_2_lesson"
                 android:text="World" />
 
             <ImageView
@@ -33,6 +35,8 @@
 
             <TextView
                 android:id="@+id/TextPhonenic"
+                android:textSize="16sp"
+                android:textColor="@color/text_color_2_lesson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
