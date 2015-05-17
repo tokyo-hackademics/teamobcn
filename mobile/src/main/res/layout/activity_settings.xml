@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#3A3343">
+    android:background="#3a3344">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/Toolbar"
@@ -42,7 +42,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#800080" />
+        android:background="#8b8ce4" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -73,7 +73,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#800080" />
+        android:background="#8b8ce4" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -106,7 +106,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#800080" />
+        android:background="#8b8ce4" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -138,6 +138,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#800080" />
+        android:background="#8b8ce4" />
 
 </LinearLayout>
