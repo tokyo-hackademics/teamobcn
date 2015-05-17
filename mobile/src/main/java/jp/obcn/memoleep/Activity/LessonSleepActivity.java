@@ -92,9 +92,15 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
         if(mTgDevice.getState() != TGDevice.STATE_CONNECTING
                 && mTgDevice.getState() != TGDevice.STATE_CONNECTED){
             mTgDevice.connect(true);
+            mIsTGDeviceConnected = true;
+        } else {
+            mIsTGDeviceConnected = false;
         }
 
     }
+
+    private boolean mIsTGDeviceConnected = false;
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -144,6 +150,9 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
                     @Override
                     public void run() {
                         mProgress.setVisibility(View.GONE);
+                        if(!mIsTGDeviceConnected) {
+                            mHandler.postDelayed(mRun,1000);
+                        }
                     }
                 });
             } else {
@@ -247,6 +256,10 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
                         case TGDevice.STATE_CONNECTED:
                             Log.d(TAG, "Connected.");
                             mTgDevice.start();
+                            mHandler.removeCallbacks(mRun);
+
+                            mHandler.postDelayed(mRun,5000);
+
                             break;
                         case TGDevice.STATE_NOT_FOUND:
                             Log.d(TAG, "Can't find.");
