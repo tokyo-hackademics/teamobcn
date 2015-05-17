@@ -91,10 +91,20 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(isFinishing()) {
+            mTts.stop();
+            mTts.shutdown();
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mTts.shutdown();
+
     }
 
     private void nextData() {

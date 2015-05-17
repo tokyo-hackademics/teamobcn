@@ -42,8 +42,6 @@
         android:id="@+id/BtnCompleted"
         android:layout_width="240dp"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
         android:background="@drawable/btn_lesson_completed_memorize"
