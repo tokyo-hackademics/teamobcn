@@ -104,11 +104,11 @@ public class LessonSleepActivity  extends AppCompatActivity implements TextToSpe
 
     private void nextSpeech() {
 
-        if(mData.Words.size() >= mCount) {
+        if(mData.Words.size() <= mCount) {
             //TODO 最後の言葉を入れる。文言検討
             mTts.setOnUtteranceProgressListener(null);
             mTts.setOnUtteranceCompletedListener(null);
-            speech("Congratulations");
+            speech("Congratulations!");
 
             return;
         }
