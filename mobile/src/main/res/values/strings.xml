@@ -6,8 +6,8 @@
     <string name="action_settings">Settings</string>
 
 
-    <string name="details_dont_know">I dont know</string>
+    <string name="details_dont_know">Don\'t know</string>
     <string name="details_known">I know</string>
-    <string name="details_completed">Lets Memoryize</string>
+    <string name="details_completed">Let\'s Memorize</string>
 
 </resources>

@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/Frame"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerInParent="true">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/TextLesson"
-            style="@style/TextAppearance.AppCompat.Medium"
+        <LinearLayout
+            android:id="@+id/Frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/grid_item_frame_next" />
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_marginTop="12dp"
-            android:id="@+id/TextMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/TextLesson" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/TextLesson"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/grid_item_frame_next"
+                android:gravity="center"
+                android:textColor="@color/sub_color_1_lesson"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/TextMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14sp"
+                android:textColor="@color/text_color_2_lesson"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-    <Button
+    </FrameLayout>
+
+    <TextView
         android:id="@+id/BtnCompleted"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
-        android:text="@string/details_completed" />
+        android:background="@drawable/btn_lesson_completed_memorize"
+        android:gravity="center"
+        android:text="@string/details_completed"
+        android:textColor="@color/text_color_3_common"
+        android:textSize="22sp" />
 
-</RelativeLayout>
+</LinearLayout>

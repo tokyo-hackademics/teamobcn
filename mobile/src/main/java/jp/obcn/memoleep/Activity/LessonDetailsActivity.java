@@ -58,8 +58,8 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_details);
-        findViewById(R.id.BtnKnown).setOnClickListener(this);
-        findViewById(R.id.BtnDontknow).setOnClickListener(this);
+        findViewById(R.id.TextKnown).setOnClickListener(this);
+        findViewById(R.id.TextDontknow).setOnClickListener(this);
         mFooter = findViewById(R.id.Footer);
         mFrameProgress = findViewById(R.id.FrameProgress);
         mProgressBar = (ProgressBar) findViewById(R.id.Progress);
@@ -212,11 +212,11 @@ public class LessonDetailsActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         int id = view.getId();
 
-        if (id == R.id.BtnDontknow) {
+        if (id == R.id.TextDontknow) {
 
             nextData();
 
-        } else if (id == R.id.BtnKnown) {
+        } else if (id == R.id.TextKnown) {
 
             nextData();
 

@@ -43,6 +43,7 @@ public class DetailsCompletedFragment extends Fragment {
         textLesson.setText(data.title);
 
         TextView textMessage = (TextView) v.findViewById(R.id.TextMessage);
+        textMessage.setText("You have completed the " +  data.title + "." );
 
         GlobalConfig.getInstance(getActivity()).writeCompletedLesson(data.title);
 

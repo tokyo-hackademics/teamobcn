@@ -108,16 +108,20 @@ public class LessonListActivity extends AppCompatActivity implements AdapterView
 
             if(bRet) {
                 vh.frame.setBackgroundResource(R.drawable.grid_item_frame_complete_tap);
+                vh.title.setTextColor(getResources().getColor(R.color.sub_color_3_common));
             } else if(mFirstInComplteted) {
                 vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
+                vh.title.setTextColor(getResources().getColor(R.color.sub_color_1_lesson));
                 data.isNext = true;
                 mFirstInComplteted = false;
             } else if(data.isNext) {
                 vh.frame.setBackgroundResource(R.drawable.grid_item_frame_next_tap);
+                vh.title.setTextColor(getResources().getColor(R.color.sub_color_1_lesson));
                 data.isNext = true;
                 mFirstInComplteted = false;
             } else {
                 vh.frame.setBackgroundResource(R.drawable.grid_item_frame_incomplete_tap);
+                vh.title.setTextColor(getResources().getColor(R.color.text_color_3_common));
             }
 
 

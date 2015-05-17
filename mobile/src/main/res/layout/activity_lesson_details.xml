@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/Toolbar"
@@ -19,12 +19,12 @@
         android:layout_height="64dp">
 
         <TextView
-            android:gravity="center"
             android:id="@+id/TextProgressTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/Progress"
+            android:gravity="center"
             android:text="3:00" />
 
         <ProgressBar
@@ -39,35 +39,41 @@
     </RelativeLayout>
 
     <FrameLayout
-        android:layout_margin="18dp"
-        android:layout_weight="1"
         android:id="@+id/Frame"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:layout_margin="18dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/Footer"
-        android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="64dp"
+        android:layout_marginBottom="12dp">
 
-        <Button
-            android:layout_margin="8dp"
-            android:id="@+id/BtnDontknow"
-            android:text="@string/details_dont_know"
-            android:layout_weight="1"
+        <TextView
+            android:id="@+id/TextDontknow"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
             android:background="@drawable/btn_lesson_details_dontknow"
-            android:layout_height="match_parent" />
+            android:gravity="center"
+            android:text="@string/details_dont_know"
+            android:textColor="@color/text_color_1_sleep"
+            android:textSize="16sp" />
 
-        <Button
-            android:layout_margin="8dp"
-            android:id="@+id/BtnKnown"
-            android:text="@string/details_known"
-            android:background="@drawable/btn_lesson_details_iknow"
-            android:layout_weight="1"
+        <TextView
+            android:id="@+id/TextKnown"
             android:layout_width="0dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_lesson_details_iknow"
+            android:gravity="center"
+            android:text="@string/details_known"
+            android:textColor="@color/text_color_1_sleep"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
